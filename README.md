@@ -169,7 +169,7 @@ fetch(apiUrl)
 
 ## Summary
 
-I have learned how to:
+##### I have learned how to:
 
 - Use `process.argv` for CLI arguments.
 - Make HTTP requests using `node-fetch`.
@@ -177,7 +177,9 @@ I have learned how to:
 - Style terminal output with `chalk`.
 - Handle errors gracefully.
 
-Additional Highlights
+---
+
+#### Additional Highlights
 
 Environment Variable Management: The project demonstrates best practices for handling sensitive information like API keys using .env files.
 
@@ -185,19 +187,19 @@ Custom Output Styling: The chalk library is used to enhance the user experience 
 
 Extensibility: The program is designed to be easily extendable, with bonus features such as unit switching and additional weather details.
 
-This project is perfect for anyone looking to:
+##### If you are looking to a little bit of getting to know:
 
-- Learn how to work with APIs in Node.js.
+- How to work with APIs in Node.js.
 - Understand CLI application development.
 - Explore the use of third-party libraries like dotenv and chalk.
 
 Feel free to fork this project, explore the code, and add more features or customization! For any questions or suggestions, contributions are welcome through GitHub.
 
-How to Run
+##### How to Run
 
 Follow the steps in this document to set up and run the project in your local environment.
 
-You can extend this project by:
+##### Or, you can extend this project by:
 
 - Adding more weather details (e.g., humidity, wind speed).
 - Allowing users to save preferences.
