@@ -23,12 +23,15 @@ This project demonstrates how to build a Command Line Interface (CLI) applicatio
 ## Project Setup
 
 1. **Initialize the project:**
+
    ```bash
    npm init -y
    ```
+
    This creates a `package.json` file to manage dependencies.
 
 2. **Install dependencies:**
+
    ```bash
    npm install dotenv chalk node-fetch@2
    ```
@@ -68,15 +71,15 @@ This project demonstrates how to build a Command Line Interface (CLI) applicatio
 Create `weather.js` to fetch and display weather information:
 
 ```javascript
-import chalk from 'chalk';
-import fetch from 'node-fetch';
+import chalk from "chalk";
+import fetch from "node-fetch";
 
 const city = process.argv[2];
-const unit = process.argv[3] === 'imperial' ? 'imperial' : 'metric'; // Default to metric
+const unit = process.argv[3] === "imperial" ? "imperial" : "metric"; // Default to metric
 const port = process.env.PORT || 3000; // Default port is 3000
 
 if (!city) {
-  console.log(chalk.red('Please provide a city name.'));
+  console.log(chalk.red("Please provide a city name."));
   process.exit(1);
 }
 
@@ -84,25 +87,33 @@ const apiKey = process.env.KEY;
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
 
 fetch(apiUrl)
-  .then(response => {
+  .then((response) => {
     if (!response.ok) {
-      throw new Error('City not found or invalid API request');
+      throw new Error("City not found or invalid API request");
     }
     return response.json();
   })
-  .then(data => {
-    const tempUnit = unit === 'imperial' ? '°F' : '°C';
+  .then((data) => {
+    const tempUnit = unit === "imperial" ? "°F" : "°C";
     const now = new Date(); // Get current date and time
 
-    console.log(chalk.cyan('@@@@@@@@@@@@@@@@@@@'));
-    console.log(chalk.cyan('@ WEATHER PROGRAM @'));
-    console.log(chalk.cyan('@@@@@@@@@@@@@@@@@@@'));
+    console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
+    console.log(chalk.cyan("@ WEATHER PROGRAM @"));
+    console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
     console.log(chalk.gray(`\nReport generated on: ${now.toLocaleString()}`));
     console.log(chalk.gray(`Running on port: ${port}`));
-    console.log(`\nIt is now ${chalk.green(data.main.temp + tempUnit)} in ${chalk.yellow(data.name)}`);
-    console.log(`The current weather conditions are: ${chalk.magenta(data.weather[0].description)}`);
+    console.log(
+      `\nIt is now ${chalk.green(data.main.temp + tempUnit)} in ${chalk.yellow(
+        data.name
+      )}`
+    );
+    console.log(
+      `The current weather conditions are: ${chalk.magenta(
+        data.weather[0].description
+      )}`
+    );
   })
-  .catch(error => console.error(chalk.red('Error:', error.message)));
+  .catch((error) => console.error(chalk.red("Error:", error.message)));
 ```
 
 ---
@@ -110,6 +121,7 @@ fetch(apiUrl)
 ### 3. Run the Program
 
 1. Add a `start` script to your `package.json`:
+
    ```json
    "scripts": {
      "start": "node --require dotenv/config weather.js"
@@ -117,11 +129,13 @@ fetch(apiUrl)
    ```
 
 2. Execute the program:
+
    ```bash
    npm start london
    ```
 
    Example output:
+
    ```plaintext
    @@@@@@@@@@@@@@@@@@@
    @ WEATHER PROGRAM @
@@ -136,7 +150,7 @@ fetch(apiUrl)
 
 ---
 
-## Bonus Features
+## Features
 
 ### 1. Add Unit Switching
 
@@ -155,7 +169,7 @@ fetch(apiUrl)
 
 ## Summary
 
-This project taught us how to:
+I have learned how to:
 
 - Use `process.argv` for CLI arguments.
 - Make HTTP requests using `node-fetch`.
@@ -163,11 +177,31 @@ This project taught us how to:
 - Style terminal output with `chalk`.
 - Handle errors gracefully.
 
+Additional Highlights
+
+Environment Variable Management: The project demonstrates best practices for handling sensitive information like API keys using .env files.
+
+Custom Output Styling: The chalk library is used to enhance the user experience with colorful and readable console outputs.
+
+Extensibility: The program is designed to be easily extendable, with bonus features such as unit switching and additional weather details.
+
+This project is perfect for anyone looking to:
+
+- Learn how to work with APIs in Node.js.
+- Understand CLI application development.
+- Explore the use of third-party libraries like dotenv and chalk.
+
+Feel free to fork this project, explore the code, and add more features or customization! For any questions or suggestions, contributions are welcome through GitHub.
+
+How to Run
+
+Follow the steps in this document to set up and run the project in your local environment.
+
 You can extend this project by:
 
 - Adding more weather details (e.g., humidity, wind speed).
 - Allowing users to save preferences.
-- Implementing more advanced CLI options with libraries like `yargs`.
+- Implementing more advanced CLI options with libraries like `yargs`. Check the resources below!
 
 ---
 
@@ -177,4 +211,3 @@ You can extend this project by:
 - [OpenWeatherMap API](https://openweathermap.org/api)
 - [Chalk Documentation](https://www.npmjs.com/package/chalk)
 - [dotenv Documentation](https://www.npmjs.com/package/dotenv)
-
