@@ -1,5 +1,8 @@
+import dotenv from "dotenv";
 import chalk from "chalk";
 import fetch from "node-fetch";
+
+dotenv.config();
 
 const city = process.argv[2];
 /**
