@@ -207,9 +207,61 @@ Follow the steps in this document to set up and run the project in your local en
 
 ---
 
+## Future Enhancements
+
+### 1. Modularize Code
+
+- Split the code into separate modules for better organization and maintainability.
+- Example: Create separate files for fetching data, handling user input, and displaying results.
+
+### 2. Add Unit Tests
+
+- Write unit tests to ensure your code works as expected.
+- Use a testing framework like Jest.
+- Example: Test the API response handling and error scenarios.
+
+### 3. Expand API Usage
+
+- Fetch more weather data, such as forecasts, humidity, wind speed, etc.
+- Display additional weather details in the output.
+
+### 4. Frontend Integration
+
+- Create a simple frontend using HTML, CSS, and JavaScript.
+- Use a frontend framework like React or Vue.js for a more dynamic UI.
+- Example: Display weather data in a web page with interactive elements.
+
+### 5. Express Server
+
+- Set up an Express server to serve your frontend and handle API requests.
+- Example: Create routes for fetching weather data and serving static files.
+
+### 6. Database Integration
+
+- Store user preferences or weather data in a database like MongoDB or PostgreSQL.
+- Example: Save favorite cities and display their weather data on demand.
+
+### 7. User Authentication
+
+- Implement user authentication to save user-specific settings.
+- Example: Allow users to create accounts and save their preferred cities and units.
+
+### 8. Deployment
+
+- Deploy your application to a platform like Heroku, Vercel, or AWS.
+- Example: Make your weather app accessible online for users to check the weather from anywhere.
+
+---
+
 ## Resources
 
 - [Node.js Documentation](https://nodejs.org/en/docs/)
 - [OpenWeatherMap API](https://openweathermap.org/api)
 - [Chalk Documentation](https://www.npmjs.com/package/chalk)
 - [dotenv Documentation](https://www.npmjs.com/package/dotenv)
+- [Express Documentation](https://expressjs.com/)
+- [Jest Documentation](https://jestjs.io/)
+- [React Documentation](https://reactjs.org/)
+- [Vue.js Documentation](https://vuejs.org/)
+- [MongoDB Documentation](https://docs.mongodb.com/)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
