@@ -42,11 +42,11 @@ fetch(apiUrl)
     console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
     console.log(chalk.cyan("@ WEATHER PROGRAM @"));
     console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
-    console.log(chalk.yellow(`\nReport generated on: ${now.toLocaleString()}`));
+    console.log(chalk.green(`\nReport generated on: ${now.toLocaleString()}`));
     console.log(chalk.gray(`Running on port: ${port}`));
-    console.log(chalk.gray(`Local time in ${data.name}: ${localTime}`));
+    console.log(chalk.cyan(`Local time in ${data.name}: ${localTime}`));
     console.log(
-      `\nIt is now ${chalk.green(data.main.temp + tempUnit)} in ${chalk.yellow(
+      `\nIt is now ${chalk.cyan(data.main.temp + tempUnit)} in ${chalk.magenta(
         data.name
       )}`
     );
