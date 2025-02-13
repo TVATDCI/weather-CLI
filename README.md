@@ -42,7 +42,7 @@ This project demonstrates how to build a Command Line Interface (CLI) applicatio
 
 3. **Project structure:**
    ```plaintext
-   project-folder/
+   weather-CLI/
    ├── .env
    ├── .gitignore
    ├── package.json
@@ -282,3 +282,31 @@ Follow the steps in this document to set up and run the project in your local en
 - [Vue.js Documentation](https://vuejs.org/)
 - [MongoDB Documentation](https://docs.mongodb.com/)
 - [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+
+The current description is clear and concise. Here is an enhanced version that includes additional details about the features and learning outcomes:
+
+"This project is designed as a learning exercise for integrating external APIs and building CLI applications in Node.js. The program takes a city name as input, fetches weather data from the OpenWeatherMap API, and displays it in a well-formatted output in the terminal. It supports unit switching between metric and imperial, displays additional weather details such as humidity, wind speed, and pressure, and handles user input and errors effectively."
+
+For topic tags, you can consider the following based on the content of your
+
+README.md
+
+:
+
+- Node.js
+- CLI
+- API
+- OpenWeatherMap
+- Weather
+- JavaScript
+- dotenv
+- chalk
+- node-fetch
+- Learning
+- Tutorial
+- Command Line Interface
+- Environment Variables
+- HTTP Requests
+- Error Handling
+
+These tags will help others find your project based on the technologies and concepts it covers.
