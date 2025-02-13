@@ -71,8 +71,11 @@ This project demonstrates how to build a Command Line Interface (CLI) applicatio
 Create `weather.js` to fetch and display weather information:
 
 ```javascript
+import dotenv from "dotenv";
 import chalk from "chalk";
 import fetch from "node-fetch";
+
+dotenv.config();
 
 const city = process.argv[2];
 const unit = process.argv[3] === "imperial" ? "imperial" : "metric"; // Default to metric
@@ -96,12 +99,16 @@ fetch(apiUrl)
   .then((data) => {
     const tempUnit = unit === "imperial" ? "°F" : "°C";
     const now = new Date(); // Get current date and time
+    const localTime = new Date(
+      (data.dt + data.timezone) * 1000
+    ).toLocaleString();
 
     console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
     console.log(chalk.cyan("@ WEATHER PROGRAM @"));
     console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
     console.log(chalk.gray(`\nReport generated on: ${now.toLocaleString()}`));
     console.log(chalk.gray(`Running on port: ${port}`));
+    console.log(chalk.gray(`Local time in ${data.name}: ${localTime}`));
     console.log(
       `\nIt is now ${chalk.green(data.main.temp + tempUnit)} in ${chalk.yellow(
         data.name
@@ -112,6 +119,9 @@ fetch(apiUrl)
         data.weather[0].description
       )}`
     );
+    console.log(`Humidity: ${chalk.blue(data.main.humidity)}%`);
+    console.log(`Wind Speed: ${chalk.blue(data.wind.speed)} m/s`);
+    console.log(`Pressure: ${chalk.blue(data.main.pressure)} hPa`);
   })
   .catch((error) => console.error(chalk.red("Error:", error.message)));
 ```
@@ -146,6 +156,9 @@ fetch(apiUrl)
 
    It is now 5.46°C in London
    The current weather conditions are: overcast clouds
+   Humidity: 80%
+   Wind Speed: 5.1 m/s
+   Pressure: 1012 hPa
    ```
 
 ---
@@ -164,6 +177,10 @@ fetch(apiUrl)
 
 - The current date is fetched using the `Date` object.
 - The port is read from `.env` or defaults to `3000`.
+
+### 3. Display Additional Weather Details
+
+- The program now displays additional weather details such as humidity, wind speed, and pressure.
 
 ---
 
