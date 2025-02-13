@@ -35,12 +35,16 @@ fetch(apiUrl)
   .then((data) => {
     const tempUnit = unit === "imperial" ? "°F" : "°C";
     const now = new Date(); // Get current date and time
+    const localTime = new Date(
+      (data.dt + data.timezone) * 1000
+    ).toLocaleString();
 
     console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
     console.log(chalk.cyan("@ WEATHER PROGRAM @"));
     console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
     console.log(chalk.yellow(`\nReport generated on: ${now.toLocaleString()}`));
     console.log(chalk.gray(`Running on port: ${port}`));
+    console.log(chalk.gray(`Local time in ${data.name}: ${localTime}`));
     console.log(
       `\nIt is now ${chalk.green(data.main.temp + tempUnit)} in ${chalk.yellow(
         data.name
@@ -51,5 +55,8 @@ fetch(apiUrl)
         data.weather[0].description
       )}`
     );
+    console.log(`Humidity: ${chalk.blue(data.main.humidity)}%`);
+    console.log(`Wind Speed: ${chalk.blue(data.wind.speed)} m/s`);
+    console.log(`Pressure: ${chalk.blue(data.main.pressure)} hPa`);
   })
   .catch((error) => console.error(chalk.red("Error:", error.message)));
