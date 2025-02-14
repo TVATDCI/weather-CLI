@@ -8,7 +8,7 @@ const BtnSvg = (white) => (
     >
       <path
         fill={white ? "white" : "none"}
-        stroke={white ? "white" : "url(#btn-left)"} // mentioned in ButtonGradient.jsx
+        stroke={white ? "white" : "url(#btn-left)"}
         strokeWidth="2"
         d="M21,43.00005 L8.11111,43.00005 C4.18375,43.00005 1,39.58105 1,35.36365 L1,8.63637 C1,4.41892 4.18375,1 8.11111,1 L21,1"
       />
