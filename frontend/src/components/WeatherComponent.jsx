@@ -1,5 +1,6 @@
 // src/components/WeatherComponent.jsx
 import Btn from "./Btn";
+import { forecastAlien } from "../assets/index";
 
 const WeatherComponent = () => {
   return (
@@ -9,7 +10,8 @@ const WeatherComponent = () => {
       </h1>
       {/* Weather details will be displayed here */}
       <Btn className="mt-4" href="/weather">
-        <span>Check Weather</span>
+        <img src={forecastAlien} alt="Forecast Alien" width={50} />
+        <span>❄️-⚡-☔-☀️-🌀-°F:°C</span>
       </Btn>
     </div>
   );
