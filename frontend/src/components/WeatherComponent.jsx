@@ -4,7 +4,7 @@ import React from "react";
 const WeatherComponent = () => {
   return (
     <div>
-      <h1>Weather Information</h1>
+      <h1 className="text-red ">Weather Information</h1>
       {/* Weather details will be displayed here */}
     </div>
   );
