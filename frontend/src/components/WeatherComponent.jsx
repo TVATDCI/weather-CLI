@@ -18,7 +18,7 @@ const WeatherComponent = () => {
       <h1 className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-2">
         Weather Information
       </h1>
-      <WeatherFetcher city="New York" />
+      <WeatherFetcher city="Bangkok" />
       <Btn className="mt-4 flex items-center space-x-2 " href="/weather">
         <span className="flex items-center space-x-1">
           <img
