@@ -28,9 +28,12 @@ const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=
 fetch(apiUrl)
   .then((response) => {
     if (!response.ok) {
-      throw new Error("City not found or invalid API request");
+      return response.json().then((error) => {
+        // OpenWeatherMap API returns an error message in JSON format
+        throw new Error("City not found or invalid API request");
+      });
     }
-    return response.json();
+    return response.json(); // If the response is OK, return the JSON data
   })
   .then((data) => {
     const tempUnit = unit === "imperial" ? "°F" : "°C";
