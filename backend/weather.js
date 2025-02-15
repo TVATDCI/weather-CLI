@@ -38,9 +38,18 @@ fetch(apiUrl)
   .then((data) => {
     const tempUnit = unit === "imperial" ? "°F" : "°C";
     const now = new Date(); // Get current date and time
-    const localTime = new Date(
+    {
+      /* const localTime = new Date(
       (data.dt + data.timezone) * 1000
     ).toLocaleString();
+    */
+    }
+    // Use Intl.DateTimeFormat API
+    const localTime = new Intl.DateTimeFormat("en-US", {
+      timeZone: "UTC",
+      dateStyle: "full",
+      timeStyle: "short",
+    }).format(new Date((data.dt + data.timezone) * 1000)); // ✅ Fix applied
 
     console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
     console.log(chalk.cyan("@ WEATHER PROGRAM @"));
