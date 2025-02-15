@@ -49,6 +49,19 @@ fetch(apiUrl)
       timeZone: "UTC",
       dateStyle: "full",
       timeStyle: "short",
+    }).format(new Date((data.dt + data.timezone) * 1000));
+    {
+      /**
+      // Or it is possible to install moment-timezone and use city-based time zone (eg. "Europe/London")
+      const moment = require("moment-timezone");
+
+      // const localTime = moment
+  .unix(data.dt) // Convert timestamp
+  .utcOffset(data.timezone / 60) // Convert seconds to minutes
+  .format("LLLL"); // Format date/time
+
+       */
+    }
     }).format(new Date((data.dt + data.timezone) * 1000)); // Convert UTC time to local time
 
     console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
