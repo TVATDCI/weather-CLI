@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 3003;
 
 // prepare cors for cross-origin requests
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173" }));
 
 app.get("/weather/:city", async (req, res) => {
   try {
