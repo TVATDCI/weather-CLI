@@ -20,7 +20,12 @@ const WeatherComponent = () => {
       {/* Weather details will be displayed here */}
       <Btn className="mt-4 flex items-center space-x-2 " href="/weather">
         <span className="flex items-center space-x-1">
-          <img src={forecastAlien} alt="Forecast Alien" width={50} />
+          <img
+            className="mx-4"
+            src={forecastAlien}
+            alt="Forecast Alien"
+            width={50}
+          />
           <FaSnowflake className="text-blue-500" />
           <FaBolt className="text-yellow-500" />
           <FaCloudRain className="text-blue-400" />

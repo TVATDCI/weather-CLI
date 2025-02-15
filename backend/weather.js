@@ -62,6 +62,7 @@ fetch(apiUrl)
 
        */
     }
+    }).format(new Date((data.dt + data.timezone) * 1000)); // Convert UTC time to local time
 
     console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
     console.log(chalk.cyan("@ WEATHER PROGRAM @"));
@@ -79,6 +80,20 @@ fetch(apiUrl)
         data.weather[0].description
       )}`
     );
+    console.log(`Feels like: ${chalk.cyan(data.main.feels_like + tempUnit)}`);
+    console.log(`Visibility: ${chalk.blue(data.visibility / 1000)} km`);
+    console.log(`Cloud Cover: ${chalk.blue(data.clouds.all)}%`);
+    console.log(
+      `Sunrise: ${chalk.yellow(
+        new Date(data.sys.sunrise * 1000).toLocaleTimeString()
+      )}`
+    );
+    console.log(
+      `Sunset: ${chalk.yellow(
+        new Date(data.sys.sunset * 1000).toLocaleTimeString()
+      )}`
+    );
+
     console.log(`Humidity: ${chalk.blue(data.main.humidity)}%`);
     console.log(`Wind Speed: ${chalk.blue(data.wind.speed)} m/s`);
     console.log(`Pressure: ${chalk.blue(data.main.pressure)} hPa`);
