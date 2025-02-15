@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import Btn from "./Btn";
 import { forecastAlien } from "../assets/index";
+import WeatherFetcher from "./WeatherFetcher";
 
 const WeatherComponent = () => {
   return (
@@ -17,7 +18,7 @@ const WeatherComponent = () => {
       <h1 className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-2">
         Weather Information
       </h1>
-      {/* Weather details will be displayed here */}
+      <WeatherFetcher city="New York" />
       <Btn className="mt-4 flex items-center space-x-2 " href="/weather">
         <span className="flex items-center space-x-1">
           <img
