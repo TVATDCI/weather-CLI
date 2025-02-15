@@ -99,3 +99,4 @@ fetch(apiUrl)
     console.log(`Pressure: ${chalk.blue(data.main.pressure)} hPa`);
   })
   .catch((error) => console.error(chalk.red("Error:", error.message)));
+  

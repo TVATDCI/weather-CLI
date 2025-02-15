@@ -31,13 +31,17 @@ const WeatherFetcher = ({ city }) => {
       <h2 className="text-xl font-bold">
         {weather.city}, {weather.country}
       </h2>
-      <p>🌡 Temperature: {weather.temperature}</p>
-      <p>🥶 Feels Like: {weather.feels_like}</p>
-      <p>🌤 Conditions: {weather.conditions}</p>
-      <p>💨 Wind Speed: {weather.wind_speed}</p>
-      <p>☁️ Cloud Cover: {weather.cloud_cover}</p>
-      <p>🔆 Sunrise: {weather.sunrise}</p>
-      <p>🌅 Sunset: {weather.sunset}</p>
+      <ul className="mt-2">
+        {Object.entries(weather).map(
+          ([key, value]) =>
+            key !== "city" &&
+            key !== "country" && ( // Exclude city/country from list
+              <li key={key} className="capitalize">
+                <strong>{key.replace("_", " ")}:</strong> {value}
+              </li>
+            )
+        )}
+      </ul>
     </div>
   );
 };
