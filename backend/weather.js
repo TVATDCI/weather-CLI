@@ -49,7 +49,7 @@ fetch(apiUrl)
       timeZone: "UTC",
       dateStyle: "full",
       timeStyle: "short",
-    }).format(new Date((data.dt + data.timezone) * 1000)); // ✅ Fix applied
+    }).format(new Date((data.dt + data.timezone) * 1000)); // Convert UTC time to local time
 
     console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
     console.log(chalk.cyan("@ WEATHER PROGRAM @"));
