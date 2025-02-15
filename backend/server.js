@@ -4,16 +4,14 @@ import { getWeather } from "./modules/weatherModule.js";
 const app = express();
 const port = process.env.PORT || 3003;
 
-// create an endpoint for the weather report
-
 app.get("/weather/:city", async (req, res) => {
   try {
     const city = req.params.city;
     const unit = req.query.unit || "metric"; // Default to metric
     const weatherReport = await getWeather(city, unit);
-    res.send(`<pre>${weatherReport}</pre>`); // Preformatted text in response
+    res.json(weatherReport); // Send JSON response
   } catch (error) {
-    res.status(400).send(error.message);
+    res.status(400).json({ error: error.message });
   }
 });
 
