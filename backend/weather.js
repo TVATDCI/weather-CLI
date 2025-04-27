@@ -5,20 +5,15 @@ import fetch from "node-fetch";
 dotenv.config();
 
 const city = process.argv[2];
-/**
- *  Extracting city name from the command line arguments:
- * - For example, if the user runs the program with the command "node weather.js London", the city variable will be set to London. Then, = process.argv[2] will be set to command line argument 2, which is London.
- */
 const unit = process.argv[3] === "imperial" ? "imperial" : "metric";
-/**
- * Determining unit of temperature from the command line arguments:
- * - const unit = process.argv[3] is again extracting the third command line argument(argument 0 is node, argument 1 is the file name, argument 2 is the city name, and argument 3 is the unit of temperature).
- * - Now === "imperial" ? is a ternary operator that checks if the unit in the command line argument is imperial. If it is, the unit variable is set to imperial; otherwise, it is set to metric (btw.by default).
- */
-const port = process.env.PORT || 3003; // Default port is 3000
+const port = process.env.PORT || 3003;
 
 if (!city) {
-  console.log(chalk.red("Please provide a city name."));
+  console.log(
+    chalk.red(
+      "Please run node weather.js (and provide a city name). For example - node weather.js London "
+    )
+  );
   process.exit(1);
 }
 
@@ -29,40 +24,19 @@ fetch(apiUrl)
   .then((response) => {
     if (!response.ok) {
       return response.json().then((error) => {
-        // OpenWeatherMap API returns an error message in JSON format
         throw new Error("City not found or invalid API request");
       });
     }
-    return response.json(); // If the response is OK, return the JSON data
+    return response.json();
   })
   .then((data) => {
     const tempUnit = unit === "imperial" ? "°F" : "°C";
-    const now = new Date(); // Get current date and time
-    {
-      /* const localTime = new Date(
-      (data.dt + data.timezone) * 1000
-    ).toLocaleString();
-    */
-    }
-    // Use Intl.DateTimeFormat API
+    const now = new Date();
     const localTime = new Intl.DateTimeFormat("en-US", {
       timeZone: "UTC",
       dateStyle: "full",
       timeStyle: "short",
     }).format(new Date((data.dt + data.timezone) * 1000));
-    {
-      /**
-      // Or it is possible to install moment-timezone and use city-based time zone (eg. "Europe/London")
-      const moment = require("moment-timezone");
-
-      // const localTime = moment
-  .unix(data.dt) // Convert timestamp
-  .utcOffset(data.timezone / 60) // Convert seconds to minutes
-  .format("LLLL"); // Format date/time
-
-       */
-    }
-    }).format(new Date((data.dt + data.timezone) * 1000)); // Convert UTC time to local time
 
     console.log(chalk.cyan("@@@@@@@@@@@@@@@@@@@"));
     console.log(chalk.cyan("@ WEATHER PROGRAM @"));
@@ -93,7 +67,6 @@ fetch(apiUrl)
         new Date(data.sys.sunset * 1000).toLocaleTimeString()
       )}`
     );
-
     console.log(`Humidity: ${chalk.blue(data.main.humidity)}%`);
     console.log(`Wind Speed: ${chalk.blue(data.wind.speed)} m/s`);
     console.log(`Pressure: ${chalk.blue(data.main.pressure)} hPa`);
