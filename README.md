@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a full-stack weather application that allows users to search for the current weather of a city. It fetches weather data from the OpenWeatherMap API and displays it in a user-friendly interface.
+This version of the project is a full-stack weather application that allows users to search for the current weather of a city. It fetches weather data from the OpenWeatherMap API and displays it in a user-friendly interface.
 
 If you would like to check out the legacy command-line interface version, please refer to the [feature/legacy-weather-cli branch](https://github.com/TVATDCI/weather-CLI/tree/feature/legacy-weather-cli).
 
