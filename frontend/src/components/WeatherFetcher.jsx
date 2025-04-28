@@ -5,8 +5,12 @@ const WeatherFetcher = ({ city }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Dynamically fetch the backend URL from the environment variable
+  // const apiUrl = import.meta.env.VITE_API_BASE_URL;
+
   useEffect(() => {
     const fetchWeather = async () => {
+      console.log("Fetching weather data...");
       try {
         const response = await fetch(`http://localhost:3003/weather/${city}`);
         if (!response.ok) throw new Error("Failed to fetch weather data");
@@ -25,7 +29,6 @@ const WeatherFetcher = ({ city }) => {
 
   if (loading) return <p>Loading weather...</p>;
   if (error) return <p className="text-red-500">Error: {error}</p>;
-
   return (
     <div className="bg-gray-800 text-green-300 p-4 rounded-lg overflow-auto">
       <h2 className="text-xl font-bold">

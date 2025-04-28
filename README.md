@@ -115,23 +115,17 @@ plaintext
 ## Project Structure
 
 ```plaintext
-weather-app/
+weather-cli/
 ├── backend/
-│   ├── .env
-│   ├──
-
-package.json
-
-
+│   ├── .env               # Backend-specific environment variables
+│   ├── package.json
 │   ├── server.js
 │   ├── modules/
 │   │   └── weatherModule.js
-│   └──
-
-README.md
-
-
+│   └── README.md
 ├── frontend/
+│   ├── .env.development   # Frontend environment variables for development
+│   ├── .env.production    # Frontend environment variables for production
 │   ├── public/
 │   │   └── index.html
 │   ├── src/
@@ -142,26 +136,11 @@ README.md
 │   │   ├── App.jsx
 │   │   ├── index.jsx
 │   │   └── index.css
-│   ├── .env
-│   ├──
-
-package.json
-
-
-│   └──
-
-README.md
-
-
+│   ├── package.json
+│   └── README.md
 ├── .gitignore
-├──
-
-README.md
-
-
-└──
-
-package.json
+├── README.md
+└── package.json
 
 
 ```
