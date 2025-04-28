@@ -9,15 +9,23 @@ const getWeather = async (city, unit = "metric") => {
   }
 
   const apiKey = process.env.KEY;
+  if (!apiKey) {
+    throw new Error("API key is missing. Please check your .env file.");
+  }
+
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
 
   try {
     const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error("City not found or invalid API request");
+    if (response.status === 404) {
+      throw new Error("City not found. Please check the city name.");
+    } else if (response.status === 401) {
+      throw new Error("Invalid API key. Please check your .env file.");
+    } else if (!response.ok) {
+      throw new Error("An error occurred while fetching weather data.");
     }
-    const data = await response.json();
 
+    const data = await response.json();
     const tempUnit = unit === "imperial" ? "°F" : "°C";
 
     return {
