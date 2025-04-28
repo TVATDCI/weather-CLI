@@ -2,7 +2,11 @@
 
 ## Overview
 
-This project is a full-stack weather application that allows users to search for the current weather of a city. It fetches weather data from the OpenWeatherMap API and displays it in a user-friendly interface. The application consists of:
+This project is a full-stack weather application that allows users to search for the current weather of a city. It fetches weather data from the OpenWeatherMap API and displays it in a user-friendly interface.
+
+If you would like to check out the legacy command-line interface version, please refer to the [feature/legacy-weather-cli branch](https://github.com/TVATDCI/weather-CLI/tree/feature/legacy-weather-cli).
+
+The application consists of:
 
 - A **backend** built with Node.js and Express to handle API requests and serve weather data.
 - A **frontend** built with React to provide a dynamic and interactive user interface.
@@ -239,6 +243,8 @@ package.json
 
 This project was developed as a learning exercise to integrate external APIs, build a full-stack application, and deploy it for public use. Contributions and suggestions are welcome!
 
+If you would like to check out the legacy command-line interface version, please refer to the [feature/legacy-weather-cli branch](https://github.com/TVATDCI/weather-CLI/tree/feature/legacy-weather-cli).
+
 ---
 
 ### Key Changes
@@ -248,3 +254,5 @@ This project was developed as a learning exercise to integrate external APIs, bu
 3. **Updated Project Structure:** Reflects the current folder structure.
 4. **Added Deployment Instructions:** Explains how to deploy both the backend and frontend.
 5. **Added Future Enhancements:** Lists potential improvements for the project.
+
+Thanks for smiling ! 😆
