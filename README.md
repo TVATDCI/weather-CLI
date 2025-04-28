@@ -1,4 +1,6 @@
-# Weather Application:rainbow:
+# Weather Application
+
+:rainbow:
 
 ## Overview
 
