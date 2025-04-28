@@ -6,17 +6,22 @@ const app = express();
 const port = process.env.PORT || 3003;
 
 // #Dynamic CORS for local and production
+const allowedOrigins = [
+  "http://localhost:5173", // your dev frontend
+  "https://weather-cli-frontend.onrender.com", // your deployed frontend
+];
 
 const corsOptions = {
-  origin: "http://localhost:5173", // Allow requests from the frontend
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
 };
-app.use(cors(corsOptions));
 
-// #Log incoming requests
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-});
+app.use(cors(corsOptions));
 
 // #Log incoming requests
 app.use((req, res, next) => {

@@ -12,7 +12,9 @@ const WeatherFetcher = ({ city }) => {
     const fetchWeather = async () => {
       console.log("Fetching weather data...");
       try {
-        const response = await fetch(`http://localhost:3003/weather/${city}`);
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/weather/${city}`
+        );
         if (!response.ok) throw new Error("Failed to fetch weather data");
 
         const jsonData = await response.json(); // ✅ Correctly parse JSON
