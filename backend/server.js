@@ -8,7 +8,7 @@ const port = process.env.PORT || 3003;
 // #Dynamic CORS for local and production
 const allowedOrigins = [
   "http://localhost:5173", // local dev frontend
-  "https://tvatdci.github.io/weather-CLI", // frontend production is on GitHub Pages
+  "https://tvatdci.github.io/", // frontend production is on GitHub Pages
 ];
 
 const corsOptions = {
