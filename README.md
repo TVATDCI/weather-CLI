@@ -1,6 +1,7 @@
 # Weather Application
 
 :rainbow:
+[**Live Weather App**](https://tvatdci.github.io/weather-CLI/)
 
 ## Overview
 
@@ -159,6 +160,11 @@ weather-cli/
 ---
 
 ## Deployment
+
+- ✅ The frontend is deployed on GitHub Pages which connected to the backend URL [render.com](https://weather-cli-a5va.onrender.com) and [OpenWeatherMap API](https://openweathermap.org/api) for the API key.
+  🔗 [**Test it on Live Preview →**](https://tvatdci.github.io/weather-CLI/)
+
+- ✅ Project runs locally at `http://127.0.0.1`
 
 ### Backend Deployment
 
