@@ -29,6 +29,12 @@ app.use((req, res, next) => {
   next();
 });
 
+// Root route
+app.get("/", (req, res) => {
+  res.send("Weather API Server is running 🚀");
+});
+
+// Weather endpoint
 app.get("/weather/:city", async (req, res) => {
   try {
     const city = req.params.city;
