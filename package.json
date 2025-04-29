@@ -3,10 +3,11 @@
   "name": "weather-app",
   "version": "1.0.0",
   "description": "Get the weather forecast for a location using OpenWeatherMap API",
-  "main": "index.js",
+  "main": "backend/server.js",
   "scripts": {
     "start": "node --require dotenv/config backend/server.js",
-    "build": "cd frontend && npm run build",
+    "build": "cd frontend && npm install && npm run build",
+    "deploy": "npm run build && npm run start",
     "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
     "backend": "node --require dotenv/config backend/server.js",
     "frontend": "cd frontend && npm start"
