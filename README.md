@@ -1,7 +1,9 @@
 # Weather Application
 
-:rainbow:
+🌈  
 [**Live Weather App**](https://tvatdci.github.io/weather-CLI/)
+
+> ⚠️ **Note:** The backend is hosted on Render's free tier, which may take a few seconds to wake up when you first access the app. Thanks for your patience! 😅
 
 ## Overview
 
@@ -159,26 +161,35 @@ weather-cli/
 
 ---
 
-## Deployment
+## 🚀 Deployment
 
-- ✅ The frontend is deployed on GitHub Pages which connected to the backend URL [render.com](https://weather-cli-a5va.onrender.com) and [OpenWeatherMap API](https://openweathermap.org/api) for the API key.
-  🔗 [**Test it on Live Preview →**](https://tvatdci.github.io/weather-CLI/)
+### ✅ Live App
 
-- ✅ Project runs locally at `http://127.0.0.1`
+- The **frontend** is deployed on **GitHub Pages** and connects to:
+  - the **backend** hosted on [Render](https://weather-cli-a5va.onrender.com)
+  - the [OpenWeatherMap API](https://openweathermap.org/api) for weather data
 
-### Backend Deployment
+🔗 [**Try it live →**](https://tvatdci.github.io/weather-CLI/)
 
-1. Deploy the backend to a platform like Render, Heroku, or AWS.
-2. Update the `FRONTEND_URL` in the backend `.env` file to point to the deployed frontend URL.
+> ⚠️ _Note: The backend is hosted on Render’s free tier and may take a few seconds to spin up when first accessed._
 
-### Frontend Deployment
+### ✅ Local Development
+
+- Frontend runs at: `http://localhost:5173/`
+
+---
+
+### 🔧 Backend Deployment Steps
+
+1. Deploy the backend to a service like **Render**, **Heroku**, or **AWS**.
+2. Set the `FRONTEND_URL` in the backend `.env` file to match your deployed frontend URL.
+
+### Frontend Deployment Steps
 
 1. Build the frontend:
    ```bash
    npm run build
    ```
-2. Deploy the `frontend/build` folder to a platform like GitHub Pages, Netlify, or Vercel.
-3. Update the `REACT_APP_BACKEND_URL` in the frontend `.env` file to point to the deployed backend URL.
 
 ---
 
