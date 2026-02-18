@@ -6,8 +6,9 @@
 /**
  * API configuration
  */
+// adding ping endpoint to check server responsiveness?
 export const API_CONFIG = {
-  TIMEOUT: 10000,
+  TIMEOUT: 30000, // switch from 10000 ms to 30000 ms to accommodate slower responses from sleepy servers
   BASE_URL: import.meta.env.VITE_API_BASE_URL,
 };
 
