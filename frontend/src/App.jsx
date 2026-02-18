@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useWeather } from "./hooks";
+import { API_CONFIG } from "./utils/constants";
 import { Header, Container, Background } from "./components/layout";
 import { WeatherCard, WeatherSearch } from "./components/weather";
 import { WeatherSkeleton } from "./components/ui";
@@ -9,6 +11,10 @@ import { WeatherSkeleton } from "./components/ui";
  */
 function App() {
   const { weather, loading, error, fetchWeather } = useWeather();
+  useEffect(() => {
+    //  Add the ping to wake up Render backend (free tier cold start)
+    fetch(API_CONFIG.BASE_URL).catch(() => {});
+  }, []);
 
   return (
     <Background>
