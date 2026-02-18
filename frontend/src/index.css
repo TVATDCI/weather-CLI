@@ -26,9 +26,13 @@
   --color-text: rgba(255, 255, 255, 0.87);
   --color-text-muted: #94a3b8;
 
-  /* Glass effect colors */
-  --color-glass-bg: rgba(255, 255, 255, 0.1);
+  /* Custom Glassmorphism Tokens */
+  --color-glass-white: rgba(255, 255, 255, 0.1);
   --color-glass-border: rgba(255, 255, 255, 0.2);
+  --backdrop-blur-glass: blur(12px);
+
+  /* Bento Grid Specifics */
+  --spacing-bento-gap: 1rem;
 }
 
 /* Custom animations */
@@ -76,12 +80,30 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Glass effect utility class */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+/* Custom Bento Utility */
+@utility bento-grid {
+  display: grid;
+  gap: var(--spacing-bento-gap);
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+
+  @variant md {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 180px;
+  }
+}
+
+@utility glass-card {
+  background-color: var(--color-glass-white);
+  backdrop-filter: var(--backdrop-blur-glass);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
 }
 
 /* Scrollbar styling */

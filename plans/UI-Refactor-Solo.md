@@ -116,3 +116,19 @@ This research pushes the project from "Junior React Refactor" to "Mid/Senior Fro
 3. **The Visuals:** We refine the "Glassmorphism" into a "Bento Grid" layout concept.
 
 Let me know, and I can generate the specific code or documentation for that section.
+
+---
+
+### V2 Implementation Progress
+
+Following the "V2" plan, the "Architecture Deep Dive" and "Visuals" upgrades have been successfully implemented. The codebase now reflects a modern frontend architecture.
+
+**Key Achievements:**
+
+- **TanStack Query Integration**: The manual `useWeather` hook was refactored to use `useQuery`, providing robust caching, automatic refetching, and simplified state management. The application was wrapped in a `QueryClientProvider`.
+- **Bento Grid UI**: A new `WeatherDashboard.jsx` component was created to display weather data in a modern, responsive bento grid. This replaces the previous monolithic `WeatherCard`.
+- **Styling Utilities**: The `cn` utility (using `clsx` and `tailwind-merge`) was created and integrated into all UI components, ensuring predictable and conflict-free styling. Custom `@utility` classes for `glass-card` and `bento-grid` were added to the global stylesheet.
+- **Geolocation Hook**: The `useGeolocation.jsx` hook was created, encapsulating the browser's Geolocation API and making it available for future use.
+- **Component Simplification**: The main `App.jsx` component was significantly simplified, now primarily responsible for state management (`city`, `unit`) and layout.
+
+The project is now primed for the final recommended upgrade: **The TypeScript Pivot**. The successful integration of these other architectural improvements has laid a solid foundation for introducing type safety across the application.
