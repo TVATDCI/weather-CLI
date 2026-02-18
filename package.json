@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "weather-app",
+  "name": "weather-cli",
   "version": "1.0.0",
   "description": "Get the weather forecast for a location using OpenWeatherMap API",
   "main": "backend/server.js",
