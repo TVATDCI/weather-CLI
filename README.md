@@ -7,14 +7,14 @@
 
 ## Overview
 
-This version of the project is a full-stack weather application that allows users to search for the current weather of a city. It fetches weather data from the OpenWeatherMap API and displays it in a user-friendly interface.
+This is a full-stack weather application built with modern React architecture and best practices. It fetches weather data from the OpenWeatherMap API and displays it in a beautiful, responsive UI with glassmorphism design.
 
 If you would like to check out the legacy command-line interface version, please refer to the [feature/legacy-weather-cli branch](https://github.com/TVATDCI/weather-CLI/tree/feature/legacy-weather-cli).
 
 The application consists of:
 
 - A **backend** built with Node.js and Express to handle API requests and serve weather data.
-- A **frontend** built with React to provide a dynamic and interactive user interface.
+- A **frontend** built with React 19 and Tailwind CSS v4 with a modern, scalable architecture.
 
 ---
 
@@ -22,9 +22,9 @@ The application consists of:
 
 ### Backend
 
-- Fetches weather data from the OpenWeatherMap API.
-- Handles API requests with Express.
-- Implements dynamic CORS for local and production environments.
+- Fetches weather data from the OpenWeatherMap API
+- Handles API requests with Express
+- Implements dynamic CORS for local and production environments
 - Provides detailed weather information, including:
   - Temperature
   - Feels like temperature
@@ -36,17 +36,76 @@ The application consists of:
 
 ### Frontend
 
-- Allows users to search for weather by city name.
-- Displays weather data in a clean and responsive UI.
-- Handles loading states and error messages gracefully.
-- Uses environment variables to dynamically connect to the backend.
+- **Modern Architecture**: Custom hooks, API service layer, and atomic components
+- **Glassmorphism UI**: Beautiful, modern design with Tailwind CSS v4
+- **Dynamic Backgrounds**: Changes based on weather conditions
+- **Responsive Design**: Works on all screen sizes
+- **Loading States**: Skeleton loading for better UX
+- **Error Handling**: Graceful error messages
+
+---
+
+## Architecture
+
+### Directory Structure
+
+```plaintext
+frontend/src/
+├── api/                          # API Layer
+│   ├── axios.js                  # Axios instance with interceptors
+│   ├── weatherApi.js             # Weather-specific API functions
+│   └── index.js                  # Barrel export
+│
+├── components/
+│   ├── ui/                       # Atomic UI components
+│   │   ├── Button.jsx            # Reusable button
+│   │   ├── Input.jsx             # Reusable input
+│   │   ├── Card.jsx              # Glassmorphism card
+│   │   ├── Skeleton.jsx          # Loading skeleton
+│   │   └── index.js              # Barrel export
+│   │
+│   ├── weather/                  # Feature components
+│   │   ├── WeatherCard.jsx       # Main weather display
+│   │   ├── WeatherSearch.jsx     # Search form
+│   │   ├── WeatherDetails.jsx    # Detailed weather info
+│   │   ├── WeatherIcon.jsx       # Dynamic weather icons
+│   │   └── index.js              # Barrel export
+│   │
+│   └── layout/                   # Layout components
+│       ├── Header.jsx            # App header
+│       ├── Container.jsx         # Responsive container
+│       ├── Background.jsx        # Dynamic background
+│       └── index.js              # Barrel export
+│
+├── hooks/                        # Custom React hooks
+│   ├── useWeather.js             # Weather data fetching
+│   ├── useLocalStorage.js        # Persist preferences
+│   └── index.js                  # Barrel export
+│
+├── utils/                        # Utility functions
+│   ├── formatters.js             # Temperature, date formatters
+│   ├── weatherCodes.js           # Weather code mappings
+│   ├── constants.js              # App constants
+│   └── index.js                  # Barrel export
+│
+├── App.jsx                       # Main app component
+├── main.jsx                      # Entry point
+└── index.css                     # Tailwind imports & custom styles
+```
+
+### Key Design Patterns
+
+1. **Custom Hooks**: `useWeather` encapsulates all weather-related state and logic
+2. **API Service Layer**: Axios instance with interceptors for consistent error handling
+3. **Atomic Components**: Small, reusable UI components with single responsibility
+4. **Barrel Exports**: Clean imports with index.js files
 
 ---
 
 ## Requirements
 
-- Node.js installed on your machine.
-- Basic understanding of JavaScript, React, and terminal commands.
+- Node.js 18+ installed on your machine
+- Basic understanding of JavaScript, React, and terminal commands
 
 ---
 
@@ -75,13 +134,11 @@ cd weather-app
 
 3. Create a `.env` file for environment variables:
 
-```
-
-plaintext
-  KEY=your_actual_api_key_here
-  PORT=3003
-  FRONTEND_URL=http://localhost:5173
-```
+   ```plaintext
+   KEY=your_actual_api_key_here
+   PORT=3003
+   FRONTEND_URL=http://localhost:5173
+   ```
 
 4. Start the backend server:
    ```bash
@@ -105,48 +162,13 @@ plaintext
 3. Create a `.env` file for environment variables:
 
    ```plaintext
-   REACT_APP_BACKEND_URL=http://localhost:3003/weather
+   VITE_API_BASE_URL=http://localhost:3003
    ```
 
 4. Start the frontend development server:
    ```bash
-   npm start
+   npm run dev
    ```
-
----
-
-## Project Structure
-
-```plaintext
-weather-cli/
-├── backend/
-│   ├── .env               # Backend-specific environment variables
-│   ├── package.json
-│   ├── server.js
-│   ├── modules/
-│   │   └── weatherModule.js
-│   └── README.md
-├── frontend/
-│   ├── .env.development   # Frontend environment variables for development
-│   ├── .env.production    # Frontend environment variables for production
-│   ├── public/
-│   │   └── index.html
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── WeatherFetcher.jsx
-│   │   │   ├── Btn.jsx
-│   │   │   └── BtnSvg.jsx
-│   │   ├── App.jsx
-│   │   ├── index.jsx
-│   │   └── index.css
-│   ├── package.json
-│   └── README.md
-├── .gitignore
-├── README.md
-└── package.json
-
-
-```
 
 ---
 
@@ -171,7 +193,7 @@ weather-cli/
 
 🔗 [**Try it live →**](https://tvatdci.github.io/weather-CLI/)
 
-> ⚠️ _Note: The backend is hosted on Render’s free tier and may take a few seconds to spin up when first accessed._
+> ⚠️ _Note: The backend is hosted on Render's free tier and may take a few seconds to spin up when first accessed._
 
 ### ✅ Local Development
 
@@ -202,26 +224,41 @@ weather-cli/
 
 ---
 
+## Tech Stack
+
+### Frontend
+
+- **React 19** - UI library
+- **Tailwind CSS v4** - Utility-first CSS
+- **Axios** - HTTP client
+- **React Icons** - Icon library
+- **Vite** - Build tool
+
+### Backend
+
+- **Node.js** - Runtime
+- **Express** - Web framework
+- **node-fetch** - HTTP requests
+
+---
+
 ## Future Enhancements
 
 1. **Add Forecast Data**
-
    - Extend the backend to fetch and display multi-day weather forecasts.
 
 2. **User Preferences**
-
    - Allow users to save their preferred cities and units (metric/imperial).
+   - Use `useLocalStorage` hook for persistence.
 
-3. **Authentication**
+3. **Geolocation**
+   - Auto-detect user location for instant weather display.
 
-   - Implement user authentication to save user-specific settings.
+4. **Weather Maps**
+   - Integrate weather radar and satellite imagery.
 
-4. **Database Integration**
-
-   - Store user preferences and weather data in a database like MongoDB or PostgreSQL.
-
-5. **Full-Stack Deployment**
-   - Combine the frontend and backend into a single deployment for simplicity.
+5. **PWA Support**
+   - Add service worker for offline functionality.
 
 ---
 
@@ -231,9 +268,8 @@ weather-cli/
 - [React Documentation](https://reactjs.org/)
 - [OpenWeatherMap API](https://openweathermap.org/api)
 - [Express Documentation](https://expressjs.com/)
-- [dotenv Documentation](https://www.npmjs.com/package/dotenv)
-- [Styled Components Documentation](https://styled-components.com/)
 - [Tailwind CSS Documentation](https://tailwindcss.com/)
+- [Axios Documentation](https://axios-http.com/)
 
 ---
 
@@ -244,13 +280,5 @@ This project was developed as a learning exercise to integrate external APIs, bu
 If you would like to check out the legacy command-line interface version, please refer to the [feature/legacy-weather-cli branch](https://github.com/TVATDCI/weather-CLI/tree/feature/legacy-weather-cli).
 
 ---
-
-### Key Changes
-
-1. **Updated Overview:** Reflects the full-stack nature of the project.
-2. **Added Backend and Frontend Setup Instructions:** Includes `.env` setup and running both servers.
-3. **Updated Project Structure:** Reflects the current folder structure.
-4. **Added Deployment Instructions:** Explains how to deploy both the backend and frontend.
-5. **Added Future Enhancements:** Lists potential improvements for the project.
 
 Thanks for smiling ! 😆
