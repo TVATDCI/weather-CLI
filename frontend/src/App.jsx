@@ -13,7 +13,7 @@ function App() {
   const { weather, loading, error, fetchWeather } = useWeather();
   useEffect(() => {
     //  Add the ping to wake up Render backend (free tier cold start)
-    fetch(API_CONFIG.BASE_URL).catch(() => {});
+    fetch(`${API_CONFIG.BASE_URL}/`).catch(() => {});
   }, []);
 
   return (
