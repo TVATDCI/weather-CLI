@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
+import { cn } from "../../utils/cn";
 
-/**
- * Button variants configuration
- */
 const variants = {
   primary:
     "bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/25",
@@ -12,33 +10,17 @@ const variants = {
   danger: "bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-500/25",
 };
 
-/**
- * Button sizes configuration
- */
 const sizes = {
   sm: "px-3 py-1.5 text-sm",
   md: "px-4 py-2 text-base",
   lg: "px-6 py-3 text-lg",
 };
 
-/**
- * Reusable Button component
- * Supports multiple variants and sizes with consistent styling
- *
- * @param {Object} props - Component props
- * @param {React.ReactNode} props.children - Button content
- * @param {string} props.variant - Button style variant
- * @param {string} props.size - Button size
- * @param {string} props.className - Additional CSS classes
- * @param {boolean} props.disabled - Disabled state
- * @param {boolean} props.loading - Loading state
- * @param {function} props.onClick - Click handler
- */
 export const Button = ({
   children,
   variant = "primary",
   size = "md",
-  className = "",
+  className,
   disabled = false,
   loading = false,
   onClick,
@@ -48,13 +30,15 @@ export const Button = ({
   return (
     <button
       type={type}
-      className={`
-        rounded-lg font-medium
-        transition-all duration-300 ease-in-out
-        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent
-        disabled:opacity-50 disabled:cursor-not-allowed
-        ${variants[variant]} ${sizes[size]} ${className}
-      `}
+      className={cn(
+        "rounded-lg font-medium",
+        "transition-all duration-300 ease-in-out",
+        "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent",
+        "disabled:opacity-50 disabled:cursor-not-allowed",
+        variants[variant],
+        sizes[size],
+        className
+      )}
       disabled={disabled || loading}
       onClick={onClick}
       {...props}

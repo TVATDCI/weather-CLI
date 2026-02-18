@@ -1,58 +1,26 @@
-import { useEffect } from "react";
-import { useWeather } from "./hooks";
-import { API_CONFIG } from "./utils/constants";
+import { useState } from "react";
 import { Header, Container, Background } from "./components/layout";
-import { WeatherCard, WeatherSearch } from "./components/weather";
-import { WeatherSkeleton } from "./components/ui";
+import WeatherDashboard from "./components/weather/WeatherDashboard";
+import WeatherSearch from "./components/weather/WeatherSearch";
 
-/**
- * Main App component
- * Refactored with custom hooks and modular components
- */
 function App() {
-  const { weather, loading, error, fetchWeather } = useWeather();
-  useEffect(() => {
-    //  Add the ping to wake up Render backend (free tier cold start)
-    fetch(`${API_CONFIG.BASE_URL}/`).catch(() => {});
-  }, []);
+  const [city, setCity] = useState("Nuremberg"); // Default city
+  const [unit, setUnit] = useState("metric"); // Default unit
 
   return (
     <Background>
       <div className="min-h-screen flex flex-col">
-        <Header title="Weather App" />
+        <Header title="Weather Dashboard" />
 
         <main className="flex-1 py-8">
           <Container>
-            {/* Search Section */}
             <div className="mb-8">
-              <WeatherSearch onSearch={fetchWeather} loading={loading} />
+              <WeatherSearch onSearch={setCity} />
             </div>
-
-            {/* Error State */}
-            {error && (
-              <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-200">
-                <p className="font-medium">Error: {error}</p>
-              </div>
-            )}
-
-            {/* Loading State */}
-            {loading && <WeatherSkeleton />}
-
-            {/* Weather Display */}
-            {weather && !loading && <WeatherCard weather={weather} />}
-
-            {/* Empty State */}
-            {!weather && !loading && !error && (
-              <div className="text-center py-12">
-                <p className="text-gray-400 text-lg">
-                  Enter a city name to get the current weather
-                </p>
-              </div>
-            )}
+            <WeatherDashboard city={city} unit={unit} />
           </Container>
         </main>
 
-        {/* Footer */}
         <footer className="py-4 text-center text-gray-500 text-sm">
           <p>
             Powered by{" "}

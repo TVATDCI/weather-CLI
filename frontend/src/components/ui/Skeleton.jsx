@@ -1,14 +1,7 @@
 import PropTypes from "prop-types";
+import { cn } from "../../utils/cn";
 
-/**
- * Skeleton loading component
- * Provides visual placeholder while content is loading
- *
- * @param {Object} props - Component props
- * @param {string} props.className - Additional CSS classes
- * @param {string} props.variant - Skeleton shape variant
- */
-export const Skeleton = ({ className = "", variant = "text" }) => {
+export const Skeleton = ({ className, variant = "text" }) => {
   const variants = {
     text: "h-4 w-full",
     title: "h-8 w-3/4",
@@ -19,18 +12,15 @@ export const Skeleton = ({ className = "", variant = "text" }) => {
 
   return (
     <div
-      className={`
-        animate-pulse bg-white/20 rounded-lg
-        ${variants[variant] || variants.text}
-        ${className}
-      `}
+      className={cn(
+        "animate-pulse bg-white/20 rounded-lg",
+        variants[variant] || variants.text,
+        className
+      )}
     />
   );
 };
 
-/**
- * Weather card skeleton for loading state
- */
 export const WeatherSkeleton = () => {
   return (
     <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 space-y-4">
