@@ -8,6 +8,7 @@ function App() {
   const [city, setCity] = useState("Nuremberg"); // Default city
   const [unit, setUnit] = useState("metric"); // Default unit
   const [currentLocation, setCurrentLocation] = useState(null); // { lat, lon } or null
+  const [userHasSearched, setUserHasSearched] = useState(false); // Track if user manually searched
 
   const {
     coordinates,
@@ -15,19 +16,23 @@ function App() {
     loading: geoLoading,
   } = useGeolocation();
 
+  // Only use geolocation on initial load (before user has searched)
   useEffect(() => {
-    if (coordinates) {
-      setCurrentLocation({ lat: coordinates.lat, lon: coordinates.lon });
-      setCity("Current Location"); // Display "Current Location" when using geolocation
-    } else if (geoError) {
-      console.error("Geolocation error:", geoError.message);
-      // Fallback to default city if geolocation fails/denied
-      setCurrentLocation(null);
-      setCity("Nuremberg");
+    if (!userHasSearched) {
+      if (coordinates) {
+        setCurrentLocation({ lat: coordinates.lat, lon: coordinates.lon });
+        setCity("Current Location"); // Display "Current Location" when using geolocation
+      } else if (geoError) {
+        console.error("Geolocation error:", geoError.message);
+        // Fallback to default city if geolocation fails/denied
+        setCurrentLocation(null);
+        setCity("Nuremberg");
+      }
     }
-  }, [coordinates, geoError]);
+  }, [coordinates, geoError, userHasSearched]);
 
   const handleCitySearch = (newCity) => {
+    setUserHasSearched(true); // Mark that user has manually searched
     setCity(newCity);
     setCurrentLocation(null); // Clear geolocation if user searches for a city
   };

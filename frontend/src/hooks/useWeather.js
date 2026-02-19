@@ -12,8 +12,14 @@ import weatherApi from "../api/weatherApi";
 export const useWeather = (params, unit = "metric") => {
   const { city, lat, lon } = params;
 
+  // Create a stable query key by explicitly stringifying the params
+  // This ensures React Query properly detects changes between city and coords
+  const queryKey = city
+    ? ["weather", "city", city, unit]
+    : ["weather", "coords", lat, lon, unit];
+
   return useQuery({
-    queryKey: ["weather", params, unit],
+    queryKey: queryKey,
     queryFn: () => weatherApi.getWeather(params, unit),
     enabled: !!(city || (lat && lon)), // Only run the query if location params are provided
     staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
