@@ -28,18 +28,13 @@ const WeatherIcon = ({ condition, ...props }) => {
 };
 
 const WeatherDashboard = ({ city, lat, lon, unit }) => {
-  const {
-    data: weather,
-    isLoading,
-    error,
-  } = useWeather(lat && lon ? { lat, lon } : { city }, unit);
+  const params = lat && lon ? { lat, lon } : { city };
+  const { data: weather, isLoading, error } = useWeather(params, unit);
 
   if (isLoading) return <WeatherSkeleton />;
   if (error)
     return (
-      <div className="text-center text-red-400">
-        Error: {error.message}
-      </div>
+      <div className="text-center text-red-400">Error: {error.message}</div>
     );
   if (!weather)
     return (
@@ -67,12 +62,10 @@ const WeatherDashboard = ({ city, lat, lon, unit }) => {
         <p className="text-7xl font-light">
           {formatTemperature(
             weather.temperature,
-            unit === "metric" ? "C" : "F"
+            unit === "metric" ? "C" : "F",
           )}
         </p>
-        <p className="text-xl capitalize text-gray-300">
-          {weather.conditions}
-        </p>
+        <p className="text-xl capitalize text-gray-300">{weather.conditions}</p>
       </Card>
 
       {/* Forecast Tile */}
@@ -86,7 +79,7 @@ const WeatherDashboard = ({ city, lat, lon, unit }) => {
             <p>
               {formatTemperature(
                 weather.temperature,
-                unit === "metric" ? "C" : "F"
+                unit === "metric" ? "C" : "F",
               )}
             </p>
           </div>
@@ -96,7 +89,7 @@ const WeatherDashboard = ({ city, lat, lon, unit }) => {
             <p>
               {formatTemperature(
                 weather.temperature - 1,
-                unit === "metric" ? "C" : "F"
+                unit === "metric" ? "C" : "F",
               )}
             </p>
           </div>
@@ -106,7 +99,7 @@ const WeatherDashboard = ({ city, lat, lon, unit }) => {
             <p>
               {formatTemperature(
                 weather.temperature - 1,
-                unit === "metric" ? "C" : "F"
+                unit === "metric" ? "C" : "F",
               )}
             </p>
           </div>
@@ -116,7 +109,7 @@ const WeatherDashboard = ({ city, lat, lon, unit }) => {
             <p>
               {formatTemperature(
                 weather.temperature - 2,
-                unit === "metric" ? "C" : "F"
+                unit === "metric" ? "C" : "F",
               )}
             </p>
           </div>
@@ -151,7 +144,7 @@ const WeatherDashboard = ({ city, lat, lon, unit }) => {
           <p className="text-3xl font-bold">
             {formatTemperature(
               weather.feelsLike,
-              unit === "metric" ? "C" : "F"
+              unit === "metric" ? "C" : "F",
             )}
           </p>
         </div>
@@ -160,9 +153,7 @@ const WeatherDashboard = ({ city, lat, lon, unit }) => {
       {/* Pressure Tile */}
       <Card className="glass-card text-center" hover>
         <h3 className="text-lg font-semibold text-gray-300">Pressure</h3>
-        <div className="flex items-center justify-center gap-2 mt-2">
-          <div className="text-3xl font-bold">{weather.pressure} hPa</div>
-        </div>
+        <div className="flex items-center justify-center gap-2 mt-2"></div>
       </Card>
     </main>
   );
