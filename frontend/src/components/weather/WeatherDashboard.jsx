@@ -27,8 +27,12 @@ const WeatherIcon = ({ condition, ...props }) => {
   return <Icon {...props} />;
 };
 
-const WeatherDashboard = ({ city, unit }) => {
-  const { data: weather, isLoading, error } = useWeather(city, unit);
+const WeatherDashboard = ({ city, lat, lon, unit }) => {
+  const {
+    data: weather,
+    isLoading,
+    error,
+  } = useWeather(lat && lon ? { lat, lon } : { city }, unit);
 
   if (isLoading) return <WeatherSkeleton />;
   if (error)
@@ -37,7 +41,12 @@ const WeatherDashboard = ({ city, unit }) => {
         Error: {error.message}
       </div>
     );
-  if (!weather) return null;
+  if (!weather)
+    return (
+      <div className="text-center py-12 text-gray-400 text-lg">
+        Enter a city name or enable geolocation to get the current weather
+      </div>
+    );
 
   return (
     <main className="bento-grid">
@@ -56,7 +65,10 @@ const WeatherDashboard = ({ city, unit }) => {
           />
         </div>
         <p className="text-7xl font-light">
-          {formatTemperature(weather.temperature, unit === "metric" ? "C" : "F")}
+          {formatTemperature(
+            weather.temperature,
+            unit === "metric" ? "C" : "F"
+          )}
         </p>
         <p className="text-xl capitalize text-gray-300">
           {weather.conditions}
@@ -71,22 +83,42 @@ const WeatherDashboard = ({ city, unit }) => {
           <div className="flex flex-col items-center">
             <p>Now</p>
             <Sun className="w-8 h-8" />
-            <p>{formatTemperature(weather.temperature, unit === "metric" ? "C" : "F")}</p>
+            <p>
+              {formatTemperature(
+                weather.temperature,
+                unit === "metric" ? "C" : "F"
+              )}
+            </p>
           </div>
           <div className="flex flex-col items-center">
             <p>1hr</p>
             <Cloudy className="w-8 h-8" />
-            <p>{formatTemperature(weather.temperature - 1, unit === "metric" ? "C" : "F")}</p>
+            <p>
+              {formatTemperature(
+                weather.temperature - 1,
+                unit === "metric" ? "C" : "F"
+              )}
+            </p>
           </div>
           <div className="flex flex-col items-center">
             <p>2hr</p>
             <Cloudy className="w-8 h-8" />
-            <p>{formatTemperature(weather.temperature - 1, unit === "metric" ? "C" : "F")}</p>
+            <p>
+              {formatTemperature(
+                weather.temperature - 1,
+                unit === "metric" ? "C" : "F"
+              )}
+            </p>
           </div>
           <div className="flex flex-col items-center">
             <p>3hr</p>
             <CloudRain className="w-8 h-8" />
-            <p>{formatTemperature(weather.temperature - 2, unit === "metric" ? "C" : "F")}</p>
+            <p>
+              {formatTemperature(
+                weather.temperature - 2,
+                unit === "metric" ? "C" : "F"
+              )}
+            </p>
           </div>
         </div>
       </Card>
@@ -117,7 +149,10 @@ const WeatherDashboard = ({ city, unit }) => {
         <div className="flex items-center justify-center gap-2 mt-2">
           <Thermometer className="w-8 h-8 text-orange-300" />
           <p className="text-3xl font-bold">
-            {formatTemperature(weather.feelsLike, unit === "metric" ? "C" : "F")}
+            {formatTemperature(
+              weather.feelsLike,
+              unit === "metric" ? "C" : "F"
+            )}
           </p>
         </div>
       </Card>

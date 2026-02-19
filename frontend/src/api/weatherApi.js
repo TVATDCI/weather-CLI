@@ -6,18 +6,27 @@ import api from "./axios";
  */
 export const weatherApi = {
   /**
-   * Fetch weather data for a specific city
-   * @param {string} city - City name to search
+   * Fetch weather data for a specific city or coordinates
+   * @param {{city?: string; lat?: number; lon?: number}} params - City name or coordinates
    * @param {string} unit - Temperature unit ('metric' or 'imperial')
    * @returns {Promise<Object>} Weather data object
    */
-  getWeather: async (city, unit = "metric") => {
-    if (!city?.trim()) {
-      throw new Error("City name is required");
+  getWeather: async (params, unit = "metric") => {
+    const { city, lat, lon } = params;
+
+    if (!city && (!lat || !lon)) {
+      throw new Error("Please provide either a city name or latitude and longitude.");
     }
-    return api.get(`/weather/${encodeURIComponent(city.trim())}`, {
-      params: { unit },
-    });
+
+    const queryParams = new URLSearchParams({ unit });
+    if (city) {
+      queryParams.append("city", city);
+    } else if (lat && lon) {
+      queryParams.append("lat", lat);
+      queryParams.append("lon", lon);
+    }
+
+    return api.get(`/weather?${queryParams.toString()}`);
   },
 };
 

@@ -44,11 +44,18 @@ app.get("/", (req, res) => {
 });
 
 // Weather endpoint
-app.get("/weather/:city", async (req, res) => {
+app.get("/weather", async (req, res) => {
   try {
-    const city = req.params.city;
+    const city = req.query.city;
+    const lat = req.query.lat;
+    const lon = req.query.lon;
     const unit = req.query.unit || "metric"; // Default to metric
-    const weatherReport = await getWeather(city, unit);
+
+    if (!city && (!lat || !lon)) {
+      return res.status(400).json({ error: "Please provide either a city name or latitude and longitude." });
+    }
+
+    const weatherReport = await getWeather({ city, lat, lon }, unit);
     res.json(weatherReport); // Send JSON response
   } catch (error) {
     res.status(400).json({ error: error.message });
