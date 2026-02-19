@@ -3,9 +3,11 @@ import fetch from "node-fetch";
 
 dotenv.config();
 
-const getWeather = async (city, unit = "metric") => {
-  if (!city) {
-    throw new Error("Please provide a city name.");
+const getWeather = async (options, unit = "metric") => {
+  const { city, lat, lon } = options;
+
+  if (!city && (!lat || !lon)) {
+    throw new Error("Please provide either a city name or latitude and longitude.");
   }
 
   const apiKey = process.env.KEY;
@@ -13,12 +15,17 @@ const getWeather = async (city, unit = "metric") => {
     throw new Error("API key is missing. Please check your .env file.");
   }
 
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
+  let apiUrl;
+  if (lat && lon) {
+    apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
+  } else {
+    apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
+  }
 
   try {
     const response = await fetch(apiUrl);
     if (response.status === 404) {
-      throw new Error("City not found. Please check the city name.");
+      throw new Error("Location not found. Please check the provided information.");
     } else if (response.status === 401) {
       throw new Error("Invalid API key. Please check your .env file.");
     } else if (!response.ok) {
