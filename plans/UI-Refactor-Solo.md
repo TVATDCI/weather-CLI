@@ -131,4 +131,34 @@ Following the "V2" plan, the "Architecture Deep Dive" and "Visuals" upgrades hav
 - **Geolocation Hook**: The `useGeolocation.jsx` hook was created, encapsulating the browser's Geolocation API and making it available for future use.
 - **Component Simplification**: The main `App.jsx` component was significantly simplified, now primarily responsible for state management (`city`, `unit`) and layout.
 
+---
+
+### V2.1 Geolocation Integration (Completed)
+
+The geolocation feature was fully integrated, allowing users to automatically see weather for their current location on page load.
+
+**Backend Changes:**
+
+- `weatherModule.js` modified to accept either city name or lat/lon coordinates
+- `server.js` updated to handle both city and lat/lon query parameters through unified `/weather` endpoint
+
+**Frontend Changes:**
+
+- `weatherApi.js` refactored to pass appropriate parameters (city or lat/lon) to backend
+- `useGeolocation.jsx` hook integrated into `App.jsx` for automatic location detection
+- `WeatherDashboard.jsx` updated to accept lat/lon props
+- `useWeather.js` refactored to accept params object `({city} or {lat, lon})` and unit string
+
+**Bug Fix - Geolocation Race Condition:**
+
+- **Issue**: `useGeolocation` uses `watchPosition` which continuously monitors location. When user searched for a city, the watch would fire again moments later and override the search.
+- **Solution**: Added `userHasSearched` state flag in `App.jsx`. When user manually searches, the flag is set to `true` and geolocation updates are ignored.
+- **Also Fixed**: Improved queryKey structure in `useWeather.js` for better cache detection:
+
+  ```javascript
+  const queryKey = city
+    ? ["weather", "city", city, unit]
+    : ["weather", "coords", lat, lon, unit];
+  ```
+
 The project is now primed for the final recommended upgrade: **The TypeScript Pivot**. The successful integration of these other architectural improvements has laid a solid foundation for introducing type safety across the application.
